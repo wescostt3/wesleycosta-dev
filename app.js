@@ -50,8 +50,7 @@ function renderHero(data) {
     span.className = "hover-letter bg-gradient-to-r from-blue-400 via-purple-500 to-pink-400 bg-clip-text text-transparent select-none";
     span.innerHTML = char === " " ? "&nbsp;" : char;
     // Delay staggered entries
-    span.style.animation = `float 3s ease-in-out infinite`;
-    span.style.animationDelay = `${index * 0.1}s`;
+    span.style.animationDelay = `${index * 0.08}s`;
     h1.appendChild(span);
   });
   
@@ -76,16 +75,24 @@ function renderHero(data) {
   
   const icons = ["brain", "cpu", "zap"];
   icons.forEach((iconName, t) => {
-    const iconWrapper = document.createElement("div");
-    iconWrapper.className = "p-4 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/30 animate-float";
-    iconWrapper.style.animationDelay = `${t * 0.4}s`;
+    // Outer container for scaling/pulsing and hover scale/glow
+    const outer = document.createElement("div");
+    outer.className = "hero-icon-outer p-4 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/30 cursor-pointer shadow-lg";
+    outer.style.animation = "hero-icon-pulse 2s ease-in-out infinite";
+    outer.style.animationDelay = `${t * 0.3}s`;
+    
+    // Inner container for continuous linear rotation
+    const inner = document.createElement("div");
+    inner.className = "hero-icon-inner flex items-center justify-center";
+    inner.style.animation = "hero-icon-rotate 10s linear infinite";
     
     const icon = document.createElement("i");
     icon.setAttribute("data-lucide", iconName);
     icon.className = "w-8 h-8 text-blue-400";
     
-    iconWrapper.appendChild(icon);
-    iconsDiv.appendChild(iconWrapper);
+    inner.appendChild(icon);
+    outer.appendChild(inner);
+    iconsDiv.appendChild(outer);
   });
   wrapper.appendChild(iconsDiv);
 
