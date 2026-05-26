@@ -11,3 +11,9 @@ Record of deployment updates and configurations.
 - **Branch**: `main` (configured as default)
 - **Commit**: `feat: initial commit of customizable portfolio clone`
 
+## [Vercel Production Deployment] - 2026-05-26
+- **Status**: Live
+- **Production URL**: [https://portfolio-ai-engineer-eight.vercel.app](https://portfolio-ai-engineer-eight.vercel.app)
+- **Deployment URL**: [https://portfolio-ai-engineer-1zl820owm-wescost.vercel.app](https://portfolio-ai-engineer-1zl820owm-wescost.vercel.app)
+
+
