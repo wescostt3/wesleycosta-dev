@@ -10,5 +10,7 @@ Chronological log of features, enhancements, and codebase updates.
 - Built interactive particle canvas background.
 - Built scroll-reveal triggers for layout sections.
 - Re-engineered the Hero letters to animate 3D Y-axis rotation dynamically based on relative cursor position and swiping direction (left-to-right / right-to-left).
+- Implemented a customizable hover button inside the About Me section featuring concentric cursor pointer arrays that slide out from the center in staggered circles and rotate continuously on hover or click.
 - Created `/logs` folders containing technical, fixes, and decisions summaries.
+
 
