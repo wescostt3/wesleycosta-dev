@@ -13,6 +13,7 @@ window.PORTFOLIO_DATA = {
   },
   about: {
     title: "Graduate AI Engineer passionate about building intelligent systems",
+    luckyButtonText: "I'm feeling lucky",
     paragraphs: [
       "I specialize in creating AI-powered solutions that bridge the gap between complex algorithms and real-world applications. My expertise spans machine learning, natural language processing, and deep learning technologies.",
       "With experience as a Data Analyst at the University of West London and Protrainy, I've developed a strong foundation in data analysis, visualization, and machine learning implementation. I'm passionate about making AI accessible and impactful."

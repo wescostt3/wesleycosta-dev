@@ -163,9 +163,12 @@ function renderAbout(data) {
         <div class="flex flex-wrap gap-6 text-slate-400 py-4" id="about-highlights"></div>
         
         <!-- Quote Box -->
-        <div class="bg-gradient-to-r from-blue-500/10 to-purple-500/10 p-5 rounded-lg border border-blue-400/20 animate-pulse">
+        <div class="bg-gradient-to-r from-blue-500/10 to-purple-500/10 p-5 rounded-lg border border-blue-400/20 animate-pulse mb-4">
           <p class="text-blue-300 italic text-sm md:text-base">${data.about.quote}</p>
         </div>
+        
+        <!-- Lucky Button Wrapper -->
+        <div class="relative pt-4 flex justify-start items-center overflow-visible" id="lucky-button-container"></div>
       </div>
     </div>
   `;
@@ -195,6 +198,114 @@ function renderAbout(data) {
     item.appendChild(span);
     hContainer.appendChild(item);
   });
+
+  // Render the concentric cursors hover button
+  renderLuckyButton(data);
+}
+
+function renderLuckyButton(data) {
+  const container = document.getElementById("lucky-button-container");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  // 1. Create cursors group container
+  const group = document.createElement("div");
+  group.id = "cursors-group";
+  group.className = "cursor-group";
+
+  // Concentric circle settings
+  const radii = [140, 180, 220, 260];
+  const counts = [8, 12, 16, 20];
+
+  radii.forEach((radius, circleIdx) => {
+    const count = counts[circleIdx];
+    for (let p = 0; p < count; p++) {
+      const angle = (p / count) * 2 * Math.PI;
+      const x = Math.cos(angle) * radius;
+      const y = Math.sin(angle) * radius;
+      const rotation = (angle * 180 / Math.PI) - 45; // rotate so tip points to center button
+
+      // Main cursor dot item
+      const item = document.createElement("div");
+      item.className = "cursor-item";
+      item.style.setProperty("--x", `${x}px`);
+      item.style.setProperty("--y", `${y}px`);
+      item.style.setProperty("--rot", `${rotation}deg`);
+      item.style.setProperty("--delay", `${circleIdx * 0.01 + p * 0.002}s`);
+      item.style.setProperty("--opacity", `1`);
+      item.style.setProperty("--scale", `1`);
+      
+      item.innerHTML = `
+        <svg class="w-5 h-5 text-white fill-white" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 6px rgba(255,255,255,0.6))">
+          <path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+        </svg>
+      `;
+      group.appendChild(item);
+
+      // Two trails for each main cursor for high fidelity motion blur effect
+      for (let m = 1; m <= 2; m++) {
+        const trail = document.createElement("div");
+        trail.className = "cursor-item";
+        trail.style.setProperty("--x", `${x}px`);
+        trail.style.setProperty("--y", `${y}px`);
+        trail.style.setProperty("--rot", `${rotation}deg`);
+        trail.style.setProperty("--delay", `${circleIdx * 0.01 + p * 0.002 + m * 0.008}s`);
+        trail.style.setProperty("--opacity", `${1 - m * 0.3}`);
+        trail.style.setProperty("--scale", `${1 - m * 0.2}`);
+        
+        trail.innerHTML = `
+          <svg class="w-5 h-5 text-white/50 fill-white/50" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 4px rgba(255,255,255,0.3))">
+            <path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+          </svg>
+        `;
+        group.appendChild(trail);
+      }
+    }
+  });
+
+  container.appendChild(group);
+
+  // 2. Create the hover trigger button
+  const button = document.createElement("button");
+  button.id = "lucky-btn";
+  button.className = "backdrop-blur-md bg-white/10 hover:bg-white/20 border border-white/25 hover:border-white/40 shadow-xl shadow-black/20 px-6 py-3 rounded-full text-white text-lg font-medium transition-all duration-300 hover:scale-105 active:scale-95 relative z-10 select-none cursor-pointer flex items-center justify-center";
+  button.textContent = data.about.luckyButtonText || "I'm feeling lucky";
+
+  // Inner glow element
+  const glow = document.createElement("div");
+  glow.className = "absolute inset-0 rounded-full opacity-0 pointer-events-none transition-opacity duration-500 shadow-[0_0_20px_rgba(255,255,255,0.4)]";
+  button.appendChild(glow);
+
+  let isClicked = false;
+  
+  const activate = () => {
+    group.classList.add("active");
+    glow.style.opacity = "1";
+  };
+  
+  const deactivate = () => {
+    if (!isClicked) {
+      group.classList.remove("active");
+      glow.style.opacity = "0";
+    }
+  };
+
+  button.addEventListener("mouseenter", activate);
+  button.addEventListener("mouseleave", deactivate);
+  
+  button.addEventListener("click", () => {
+    isClicked = !isClicked;
+    if (isClicked) {
+      activate();
+      button.classList.add("ring-2", "ring-white/50");
+    } else {
+      button.classList.remove("ring-2", "ring-white/50");
+      deactivate();
+    }
+  });
+
+  container.appendChild(button);
 }
 
 // 3. RENDER TECH STACK SECTION
