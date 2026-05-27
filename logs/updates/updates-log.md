@@ -9,4 +9,6 @@ Chronological log of features, enhancements, and codebase updates.
 - Created `data.js` config file with separate customizable personal objects.
 - Built interactive particle canvas background.
 - Built scroll-reveal triggers for layout sections.
+- Re-engineered the Hero letters to animate 3D Y-axis rotation dynamically based on relative cursor position and swiping direction (left-to-right / right-to-left).
 - Created `/logs` folders containing technical, fixes, and decisions summaries.
+
