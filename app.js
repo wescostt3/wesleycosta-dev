@@ -51,6 +51,24 @@ function renderHero(data) {
     span.innerHTML = char === " " ? "&nbsp;" : char;
     // Delay staggered entries
     span.style.animationDelay = `${index * 0.08}s`;
+    
+    // Add interactive 3D rotation based on mouse coordinates relative to the letter
+    span.addEventListener("mousemove", (e) => {
+      const rect = span.getBoundingClientRect();
+      const relativeX = (e.clientX - rect.left) / rect.width; // 0 to 1
+      
+      // Map 0 -> -180deg (left side) to 1 -> 180deg (right side)
+      // This creates a physical 360 degree spin that tracks the cursor's swipe direction
+      const rotY = (relativeX - 0.5) * 360;
+      
+      span.style.transform = `scale(1.25) rotateY(${rotY}deg) translateY(-5px)`;
+    });
+
+    span.addEventListener("mouseleave", () => {
+      // Transition smoothly back to original position
+      span.style.transform = "scale(1) rotateY(0deg) translateY(0)";
+    });
+
     h1.appendChild(span);
   });
   
