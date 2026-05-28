@@ -703,8 +703,8 @@ function renderContact(data) {
       <div class="space-y-8 reveal-right">
         <div class="text-center">
           <div class="w-36 h-36 mx-auto mb-6 relative">
-            <div class="w-full h-full rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border-2 border-blue-400/30 flex items-center justify-center text-6xl animate-float">
-              🤖
+            <div class="w-full h-full rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border-2 border-blue-400/30 flex items-center justify-center animate-float">
+              <img src="assets/favicon.png" class="w-24 h-24 object-contain">
             </div>
             <!-- Dashed outline rotating border -->
             <div class="absolute inset-0 border border-dashed border-purple-400/20 rounded-full animate-[spin_20s_linear_infinite]"></div>
