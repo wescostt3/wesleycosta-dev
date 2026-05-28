@@ -141,13 +141,10 @@ function renderHero(data) {
   contactBtn.innerHTML = `<span>Entre em Contato</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>`;
 
   const cvBtn = document.createElement("a");
-  cvBtn.href = "#";
+  cvBtn.href = "curriculo.html";
+  cvBtn.target = "_blank";
   cvBtn.className = "px-6 py-3 rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white font-semibold text-sm transition-all flex items-center space-x-2";
   cvBtn.innerHTML = `<i data-lucide="download" class="w-4 h-4 text-accent"></i> <span>Baixar Currículo</span>`;
-  cvBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("Download do Currículo: Coloque o arquivo PDF do seu currículo na pasta do projeto e atualize o index.html para acessá-lo diretamente!");
-  });
 
   ctaDiv.appendChild(contactBtn);
   ctaDiv.appendChild(cvBtn);
