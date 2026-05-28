@@ -21,6 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initCanvasParticles();
   initMobileMenu();
   initScrollReveal();
+  initThemeSelector();
+  initTerminalConsole();
+  initCaseStudyModal();
 
   // Create Lucide Icons
   lucide.createIcons();
@@ -116,17 +119,39 @@ function renderHero(data) {
 
   // Roles / Skills subtitle
   const subDiv = document.createElement("div");
-  subDiv.className = "space-y-4";
+  subDiv.className = "space-y-6";
   
   const mainRole = document.createElement("div");
-  mainRole.className = "text-xl font-semibold text-slate-300";
+  mainRole.className = "text-xl font-semibold text-slate-350";
   mainRole.textContent = data.personal.role;
   subDiv.appendChild(mainRole);
   
   const skillsList = document.createElement("div");
-  skillsList.className = "text-sm text-blue-400 font-mono tracking-widest";
+  skillsList.className = "text-sm text-accent-light font-mono tracking-widest";
   skillsList.textContent = data.personal.tagline;
   subDiv.appendChild(skillsList);
+
+  // Hero CTAs
+  const ctaDiv = document.createElement("div");
+  ctaDiv.className = "flex flex-wrap justify-center gap-4 pt-4";
+
+  const contactBtn = document.createElement("a");
+  contactBtn.href = "#contact";
+  contactBtn.className = "px-6 py-3 rounded-lg bg-gradient-to-r from-accent to-purple-650 hover:from-accent-light hover:to-purple-500 text-white font-semibold text-sm transition-all shadow-lg hover:scale-105 active:scale-95 flex items-center space-x-2";
+  contactBtn.innerHTML = `<span>Let's Connect</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>`;
+
+  const cvBtn = document.createElement("a");
+  cvBtn.href = "#";
+  cvBtn.className = "px-6 py-3 rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white font-semibold text-sm transition-all flex items-center space-x-2";
+  cvBtn.innerHTML = `<i data-lucide="download" class="w-4 h-4 text-accent"></i> <span>Download Resume</span>`;
+  cvBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    alert("Resume download: Place your resume PDF in the project folder and update index.html to link directly!");
+  });
+
+  ctaDiv.appendChild(contactBtn);
+  ctaDiv.appendChild(cvBtn);
+  subDiv.appendChild(ctaDiv);
   
   wrapper.appendChild(subDiv);
   container.appendChild(wrapper);
@@ -168,7 +193,7 @@ function renderAbout(data) {
         </div>
         
         <!-- Lucky Button Wrapper -->
-        <div class="relative pt-4 flex justify-start items-center overflow-visible" id="lucky-button-container"></div>
+        <div class="relative pt-4 flex justify-center items-center overflow-visible" id="lucky-button-container"></div>
       </div>
     </div>
   `;
@@ -208,6 +233,10 @@ function renderLuckyButton(data) {
   if (!container) return;
 
   container.innerHTML = "";
+
+  // Create wrapper container for exact alignment
+  const wrapper = document.createElement("div");
+  wrapper.className = "relative inline-block overflow-visible";
 
   // 1. Create cursors group container
   const group = document.createElement("div");
@@ -264,13 +293,13 @@ function renderLuckyButton(data) {
     }
   });
 
-  container.appendChild(group);
+  wrapper.appendChild(group);
 
   // 2. Create the hover trigger button
   const button = document.createElement("button");
   button.id = "lucky-btn";
-  button.className = "backdrop-blur-md bg-white/10 hover:bg-white/20 border border-white/25 hover:border-white/40 shadow-xl shadow-black/20 px-6 py-3 rounded-full text-white text-lg font-medium transition-all duration-300 hover:scale-105 active:scale-95 relative z-10 select-none cursor-pointer flex items-center justify-center";
-  button.textContent = data.about.luckyButtonText || "I'm feeling lucky";
+  button.className = "backdrop-blur-md bg-white/10 hover:bg-white/20 border border-white/25 hover:border-white/40 shadow-xl shadow-black/20 px-8 py-3 rounded-full text-white text-lg font-medium transition-all duration-300 hover:scale-105 active:scale-95 relative z-10 select-none cursor-pointer flex items-center justify-center";
+  button.textContent = data.about.luckyButtonText || "Wesley Costa";
 
   // Inner glow element
   const glow = document.createElement("div");
@@ -305,7 +334,8 @@ function renderLuckyButton(data) {
     }
   });
 
-  container.appendChild(button);
+  wrapper.appendChild(button);
+  container.appendChild(wrapper);
 }
 
 // 3. RENDER TECH STACK SECTION
@@ -481,10 +511,17 @@ function renderProjects(data) {
 
   container.className = "py-20 px-6 max-w-6xl mx-auto";
   container.innerHTML = `
-    <div class="text-center mb-16 reveal">
+    <div class="text-center mb-10 reveal">
       <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Featured Projects</h2>
-      <p class="text-slate-400 text-lg max-w-2xl mx-auto">Interactive gallery showcasing AI/ML projects that push the boundaries of what's possible</p>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">Interactive gallery showcasing full-stack systems and design architectures</p>
       <div class="h-1 w-20 bg-purple-500 mx-auto rounded-full mt-4"></div>
+    </div>
+
+    <!-- Project Filters -->
+    <div class="flex justify-center space-x-3 mb-10 reveal">
+      <button data-filter="all" class="filter-btn px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-accent/40 bg-slate-900/50 hover:bg-slate-800 text-white transition-all ring-1 ring-accent/15">All</button>
+      <button data-filter="Full Stack" class="filter-btn px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-slate-800 bg-slate-900/50 hover:border-slate-700 text-slate-400 hover:text-white transition-all">Full Stack</button>
+      <button data-filter="Frontend/Design" class="filter-btn px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-slate-800 bg-slate-900/50 hover:border-slate-700 text-slate-400 hover:text-white transition-all">Frontend/Design</button>
     </div>
     
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid"></div>
@@ -493,11 +530,12 @@ function renderProjects(data) {
   const grid = document.getElementById("projects-grid");
   data.projects.forEach((proj, idx) => {
     const cardWrapper = document.createElement("div");
-    cardWrapper.className = "group reveal";
+    cardWrapper.className = "project-card-wrapper group reveal transition-all duration-500 transform scale-100 opacity-100";
     cardWrapper.style.transitionDelay = `${idx * 0.15}s`;
+    cardWrapper.setAttribute("data-category", proj.category);
 
     const card = document.createElement("div");
-    card.className = "bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-blue-400/50 hover:scale-[1.02] hover:-translate-y-2 transition-all duration-300 overflow-hidden relative shadow-lg flex flex-col h-full";
+    card.className = "bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-accent-light/50 hover:scale-[1.02] hover:-translate-y-2 transition-all duration-300 overflow-hidden relative shadow-lg flex flex-col h-full";
 
     // Glow background
     const glow = document.createElement("div");
@@ -523,13 +561,13 @@ function renderProjects(data) {
     const githubA = document.createElement("a");
     githubA.href = proj.githubLink;
     githubA.target = "_blank";
-    githubA.className = "p-2 rounded-md hover:bg-slate-800/80 text-slate-400 hover:text-blue-400 transition-colors";
+    githubA.className = "p-2 rounded-md hover:bg-slate-800/80 text-slate-400 hover:text-accent transition-colors";
     githubA.innerHTML = '<i data-lucide="github" class="w-5 h-5"></i>';
     
     const demoA = document.createElement("a");
     demoA.href = proj.demoLink;
     demoA.target = "_blank";
-    demoA.className = "p-2 rounded-md hover:bg-slate-800/80 text-slate-400 hover:text-blue-400 transition-colors";
+    demoA.className = "p-2 rounded-md hover:bg-slate-800/80 text-slate-400 hover:text-accent transition-colors";
     demoA.innerHTML = '<i data-lucide="external-link" class="w-5 h-5"></i>';
 
     linksDiv.appendChild(githubA);
@@ -539,22 +577,33 @@ function renderProjects(data) {
 
     // Title
     const h3 = document.createElement("h3");
-    h3.className = "text-xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300 mb-2 relative z-10";
+    h3.className = "text-xl font-bold text-white group-hover:text-accent-light transition-colors duration-300 mb-2 relative z-10 cursor-pointer";
     h3.textContent = proj.title;
+    h3.addEventListener("click", () => openCaseStudy(proj));
     card.appendChild(h3);
 
     // Description
     const desc = document.createElement("p");
-    desc.className = "text-slate-400 text-sm mb-6 flex-grow leading-relaxed relative z-10";
+    desc.className = "text-slate-400 text-sm mb-4 flex-grow leading-relaxed relative z-10";
     desc.textContent = proj.description;
     card.appendChild(desc);
+
+    // Case Study Link button
+    const caseStudyBtn = document.createElement("button");
+    caseStudyBtn.className = "mb-4 text-xs font-semibold text-accent hover:text-accent-light flex items-center space-x-1 transition-all duration-300 relative z-10 self-start hover:translate-x-1 outline-none";
+    caseStudyBtn.innerHTML = `<span>Read Case Study</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1"></i>`;
+    caseStudyBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      openCaseStudy(proj);
+    });
+    card.appendChild(caseStudyBtn);
 
     // Badges Row
     const badgesRow = document.createElement("div");
     badgesRow.className = "flex flex-wrap gap-2 relative z-10 mt-auto";
     proj.tech.forEach(techTag => {
       const badge = document.createElement("span");
-      badge.className = "px-3 py-1 bg-blue-500/10 text-blue-300 rounded-full text-xs border border-blue-400/20 font-mono";
+      badge.className = "px-3 py-1 bg-accent/10 text-accent rounded-full text-xs border border-accent/20 font-mono";
       badge.textContent = techTag;
       badgesRow.appendChild(badge);
     });
@@ -562,6 +611,39 @@ function renderProjects(data) {
 
     cardWrapper.appendChild(card);
     grid.appendChild(cardWrapper);
+  });
+
+  // Filter Buttons Click Handler
+  const filterBtns = container.querySelectorAll(".filter-btn");
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const filter = btn.getAttribute("data-filter");
+      
+      filterBtns.forEach(b => {
+        b.classList.remove("border-accent/40", "ring-1", "ring-accent/15", "text-white");
+        b.classList.add("border-slate-800", "text-slate-400");
+      });
+      btn.classList.add("border-accent/40", "ring-1", "ring-accent/15", "text-white");
+      btn.classList.remove("border-slate-800", "text-slate-400");
+
+      const cards = grid.querySelectorAll(".project-card-wrapper");
+      cards.forEach(card => {
+        const category = card.getAttribute("data-category");
+        if (filter === "all" || category === filter) {
+          card.style.display = "block";
+          setTimeout(() => {
+            card.style.opacity = "1";
+            card.style.transform = "scale(1)";
+          }, 50);
+        } else {
+          card.style.opacity = "0";
+          card.style.transform = "scale(0.95)";
+          setTimeout(() => {
+            card.style.display = "none";
+          }, 300);
+        }
+      });
+    });
   });
 }
 
@@ -803,4 +885,256 @@ function initScrollReveal() {
   document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .scale-reveal").forEach(el => {
     observer.observe(el);
   });
+}
+
+// 10. PREMIUM ACCENT THEME CUSTOMIZER SYSTEM
+function initThemeSelector() {
+  const btn = document.getElementById("theme-selector-btn");
+  const dropdown = document.getElementById("theme-dropdown");
+  if (!btn || !dropdown) return;
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle("hidden");
+  });
+
+  document.addEventListener("click", () => {
+    dropdown.classList.add("hidden");
+  });
+
+  const colors = {
+    blue: {
+      color: "#3b82f6",
+      light: "#60a5fa",
+      rgb: "59, 130, 246"
+    },
+    emerald: {
+      color: "#10b981",
+      light: "#34d399",
+      rgb: "16, 185, 129"
+    },
+    pink: {
+      color: "#ec4899",
+      light: "#f472b6",
+      rgb: "236, 72, 153"
+    },
+    gold: {
+      color: "#f59e0b",
+      light: "#fbbf24",
+      rgb: "245, 158, 11"
+    }
+  };
+
+  const applyTheme = (colorName) => {
+    const config = colors[colorName];
+    if (!config) return;
+
+    document.documentElement.style.setProperty("--accent-color", config.color);
+    document.documentElement.style.setProperty("--accent-light", config.light);
+    document.documentElement.style.setProperty("--accent-color-rgb", config.rgb);
+    localStorage.setItem("portfolio-theme", colorName);
+    
+    // Highlight the selected option
+    dropdown.querySelectorAll("button").forEach(b => {
+      if (b.getAttribute("data-color") === colorName) {
+        b.classList.add("bg-slate-900/80", "ring-1", "ring-slate-800");
+      } else {
+        b.classList.remove("bg-slate-900/80", "ring-1", "ring-slate-800");
+      }
+    });
+  };
+
+  dropdown.querySelectorAll("button").forEach(button => {
+    button.addEventListener("click", () => {
+      const color = button.getAttribute("data-color");
+      applyTheme(color);
+    });
+  });
+
+  // Apply default or cached theme on load
+  const cachedTheme = localStorage.getItem("portfolio-theme") || "blue";
+  applyTheme(cachedTheme);
+}
+
+// 11. GAMIFIED INTERACTIVE TERMINAL SHELL
+function initTerminalConsole() {
+  const toggleBtn = document.getElementById("terminal-toggle-btn");
+  const modal = document.getElementById("terminal-modal");
+  const closeBtn = document.getElementById("terminal-close-btn");
+  const input = document.getElementById("terminal-input");
+  const output = document.getElementById("terminal-output");
+
+  if (!toggleBtn || !modal || !closeBtn || !input || !output) return;
+
+  const openTerminal = () => {
+    modal.classList.remove("hidden");
+    input.focus();
+  };
+
+  const closeTerminal = () => {
+    modal.classList.add("hidden");
+  };
+
+  toggleBtn.addEventListener("click", openTerminal);
+  closeBtn.addEventListener("click", closeTerminal);
+
+  // Keyboard shortcut listener ('/' to open, 'ESC' to close)
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeTerminal();
+    }
+    if (e.key === "/" && modal.classList.contains("hidden") && document.activeElement.tagName !== "INPUT" && document.activeElement.tagName !== "TEXTAREA") {
+      e.preventDefault();
+      openTerminal();
+    }
+  });
+
+  // Click outside to close modal
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeTerminal();
+    }
+  });
+
+  const commands = {
+    help: () => {
+      return `Available Commands:<br>
+  - <span class="text-purple-400 font-bold">about</span>    : Learn more about Wesley Costa<br>
+  - <span class="text-purple-400 font-bold">skills</span>   : Print core technologies and proficiencies<br>
+  - <span class="text-purple-400 font-bold">projects</span> : View high-fidelity projects and links<br>
+  - <span class="text-purple-400 font-bold">contact</span>  : Display email, github and socials<br>
+  - <span class="text-purple-400 font-bold">clear</span>    : Clear terminal screen output<br>
+  - <span class="text-purple-400 font-bold">exit</span>     : Close the terminal console`;
+    },
+    about: () => {
+      const data = window.PORTFOLIO_DATA;
+      return `<span class="text-white font-bold">${data.personal.name}</span> - ${data.personal.role}<br>
+${data.personal.shortIntro}<br>
+"${data.personal.quote}"`;
+    },
+    skills: () => {
+      const data = window.PORTFOLIO_DATA;
+      let html = "Wesley Costa's Tech Stack & Expertise:<br>";
+      data.skills.forEach(cat => {
+        html += `<span class="text-white font-bold">${cat.category}</span>:<br>`;
+        cat.skills.forEach(s => {
+          html += `  - ${s.icon} ${s.name}: ${s.level}%<br>`;
+        });
+      });
+      return html;
+    },
+    projects: () => {
+      const data = window.PORTFOLIO_DATA;
+      let html = "Core Projects Portfolio:<br>";
+      data.projects.forEach(p => {
+        html += `- <span class="text-white font-bold">${p.title}</span> [${p.category}]<br>
+  ${p.description}<br>
+  Tech Stack: ${p.tech.join(", ")}<br>
+  GitHub: <a href="${p.githubLink}" target="_blank" class="underline text-blue-400">${p.githubLink}</a><br><br>`;
+      });
+      return html;
+    },
+    contact: () => {
+      const data = window.PORTFOLIO_DATA;
+      return `Reach out to Wesley Costa:<br>
+  - Email: <a href="mailto:${data.contact.email}" class="text-blue-400 underline">${data.contact.email}</a><br>
+  - GitHub: <a href="${data.contact.github}" target="_blank" class="text-blue-400 underline">${data.contact.github}</a><br>
+  - LinkedIn: <a href="${data.contact.linkedin}" target="_blank" class="text-blue-400 underline">${data.contact.linkedin}</a>`;
+    },
+    sudo: () => {
+      return `<span class="text-red-400">sudo: Permission denied. Wesley Costa is the root administrator. Nice try! 🧑‍💻</span>`;
+    }
+  };
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const fullCmd = input.value.trim();
+      const cmd = fullCmd.toLowerCase();
+      input.value = "";
+
+      // Print prompt and command typed
+      const line = document.createElement("div");
+      line.innerHTML = `<span class="text-purple-400">visitor@wescostt:~$</span> <span class="text-white">${fullCmd}</span>`;
+      output.appendChild(line);
+
+      if (cmd === "") return;
+
+      if (cmd === "clear") {
+        output.innerHTML = "";
+        return;
+      }
+
+      if (cmd === "exit" || cmd === "close") {
+        closeTerminal();
+        return;
+      }
+
+      const response = document.createElement("div");
+      if (commands[cmd]) {
+        response.innerHTML = commands[cmd]();
+      } else {
+        response.innerHTML = `shell: command not found: <span class="text-red-400">${fullCmd}</span>. Type <span class="text-purple-400">help</span> for assistance.`;
+      }
+      output.appendChild(response);
+      
+      // Auto scroll to bottom
+      output.scrollTop = output.scrollHeight;
+    }
+  });
+}
+
+// 12. HIGH-FIDELITY PROJECT CASE STUDY MODAL SYSTEM
+function initCaseStudyModal() {
+  const modal = document.getElementById("project-modal");
+  const closeBtn = document.getElementById("project-modal-close-btn");
+
+  if (!modal || !closeBtn) return;
+
+  closeBtn.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.add("hidden");
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      modal.classList.add("hidden");
+    }
+  });
+}
+
+function openCaseStudy(proj) {
+  const modal = document.getElementById("project-modal");
+  const title = document.getElementById("project-modal-title");
+  const problem = document.getElementById("project-modal-problem");
+  const solution = document.getElementById("project-modal-solution");
+  const impact = document.getElementById("project-modal-impact");
+  const tech = document.getElementById("project-modal-tech");
+  const github = document.getElementById("project-modal-github");
+  const demo = document.getElementById("project-modal-demo");
+
+  if (!modal || !title || !problem || !solution || !impact || !tech || !github || !demo) return;
+
+  title.textContent = proj.title;
+  problem.textContent = proj.caseStudy ? proj.caseStudy.problem : "Challenge description coming soon.";
+  solution.textContent = proj.caseStudy ? proj.caseStudy.solution : "Solution breakdown coming soon.";
+  impact.textContent = proj.caseStudy ? proj.caseStudy.impact : "Impact results coming soon.";
+
+  tech.innerHTML = "";
+  proj.tech.forEach(t => {
+    const badge = document.createElement("span");
+    badge.className = "px-3 py-1 bg-accent/10 text-accent rounded-full text-xs border border-accent/20 font-mono";
+    badge.textContent = t;
+    tech.appendChild(badge);
+  });
+
+  github.href = proj.githubLink || "#";
+  demo.href = proj.demoLink || "#";
+
+  modal.classList.remove("hidden");
+  lucide.createIcons();
 }
