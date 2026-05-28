@@ -137,7 +137,7 @@ window.PORTFOLIO_DATA = {
     }
   ],
   contact: {
-    email: "wescostt3@gmail.com",
+    email: "wesleyhezitech@hotmail.com",
     phone: "https://github.com/wescostt3",
     github: "https://github.com/wescostt3",
     linkedin: "https://www.linkedin.com/in/wescostt3"
