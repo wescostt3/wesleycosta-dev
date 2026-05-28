@@ -934,7 +934,7 @@ function initThemeSelector() {
     document.documentElement.style.setProperty("--accent-color-rgb", config.rgb);
     localStorage.setItem("portfolio-theme", colorName);
     
-    // Highlight the selected option
+    // Highlight the selected option in desktop menu
     dropdown.querySelectorAll("button").forEach(b => {
       if (b.getAttribute("data-color") === colorName) {
         b.classList.add("bg-slate-900/80", "ring-1", "ring-slate-800");
@@ -942,10 +942,23 @@ function initThemeSelector() {
         b.classList.remove("bg-slate-900/80", "ring-1", "ring-slate-800");
       }
     });
+
+    // Highlight the selected option in mobile menu
+    document.querySelectorAll(".mobile-color-btn").forEach(b => {
+      if (b.getAttribute("data-color") === colorName) {
+        b.classList.add("ring-2", "ring-white", "scale-110");
+        b.classList.remove("border-slate-700");
+      } else {
+        b.classList.remove("ring-2", "ring-white", "scale-110");
+        b.classList.add("border-slate-700");
+      }
+    });
   };
 
-  dropdown.querySelectorAll("button").forEach(button => {
-    button.addEventListener("click", () => {
+  // Select all color buttons on the page (both desktop dropdown and mobile menu)
+  document.querySelectorAll("[data-color]").forEach(button => {
+    button.addEventListener("click", (e) => {
+      e.stopPropagation();
       const color = button.getAttribute("data-color");
       applyTheme(color);
     });
