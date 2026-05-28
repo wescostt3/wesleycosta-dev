@@ -138,15 +138,15 @@ function renderHero(data) {
   const contactBtn = document.createElement("a");
   contactBtn.href = "#contact";
   contactBtn.className = "px-6 py-3 rounded-lg bg-gradient-to-r from-accent to-purple-650 hover:from-accent-light hover:to-purple-500 text-white font-semibold text-sm transition-all shadow-lg hover:scale-105 active:scale-95 flex items-center space-x-2";
-  contactBtn.innerHTML = `<span>Let's Connect</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>`;
+  contactBtn.innerHTML = `<span>Entre em Contato</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>`;
 
   const cvBtn = document.createElement("a");
   cvBtn.href = "#";
   cvBtn.className = "px-6 py-3 rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white font-semibold text-sm transition-all flex items-center space-x-2";
-  cvBtn.innerHTML = `<i data-lucide="download" class="w-4 h-4 text-accent"></i> <span>Download Resume</span>`;
+  cvBtn.innerHTML = `<i data-lucide="download" class="w-4 h-4 text-accent"></i> <span>Baixar Currículo</span>`;
   cvBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    alert("Resume download: Place your resume PDF in the project folder and update index.html to link directly!");
+    alert("Download do Currículo: Coloque o arquivo PDF do seu currículo na pasta do projeto e atualize o index.html para acessá-lo diretamente!");
   });
 
   ctaDiv.appendChild(contactBtn);
@@ -165,7 +165,7 @@ function renderAbout(data) {
   container.className = "py-20 px-6 max-w-6xl mx-auto";
   container.innerHTML = `
     <div class="text-center mb-16 reveal">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">About Me</h2>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Sobre Mim</h2>
       <div class="h-1 w-20 bg-blue-500 mx-auto rounded-full"></div>
     </div>
     
@@ -185,7 +185,7 @@ function renderAbout(data) {
         <div class="space-y-4 text-slate-300 text-base md:text-lg leading-relaxed" id="about-paragraphs"></div>
         
         <!-- Highlights list -->
-        <div class="flex flex-wrap gap-6 text-slate-400 py-4" id="about-highlights"></div>
+        <div class="grid grid-cols-3 gap-2 md:gap-6 text-slate-400 py-4 w-full text-xs md:text-sm" id="about-highlights"></div>
         
         <!-- Quote Box -->
         <div class="bg-gradient-to-r from-blue-500/10 to-purple-500/10 p-5 rounded-lg border border-blue-400/20 animate-pulse mb-4">
@@ -210,11 +210,11 @@ function renderAbout(data) {
   const hContainer = document.getElementById("about-highlights");
   data.about.highlights.forEach(hl => {
     const item = document.createElement("div");
-    item.className = "flex items-center space-x-2";
+    item.className = "flex items-start space-x-2 flex-1 min-w-0";
     
     const icon = document.createElement("i");
     icon.setAttribute("data-lucide", hl.icon);
-    icon.className = "w-5 h-5 text-blue-400";
+    icon.className = "w-5 h-5 text-blue-400 shrink-0 mt-0.5";
     
     const span = document.createElement("span");
     span.textContent = hl.label;
@@ -346,8 +346,8 @@ function renderSkills(data) {
   container.className = "py-20 px-6 max-w-6xl mx-auto";
   container.innerHTML = `
     <div class="text-center mb-16 reveal">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">Tech Stack</h2>
-      <p class="text-slate-400 text-lg">Technologies and tools I use to build intelligent systems</p>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">Tecnologias</h2>
+      <p class="text-slate-400 text-lg">Tecnologias e ferramentas que utilizo para construir sistemas inteligentes</p>
       <div class="h-1 w-20 bg-pink-500 mx-auto rounded-full mt-4"></div>
     </div>
     
@@ -421,8 +421,8 @@ function renderExperience(data) {
   container.className = "py-20 px-6 max-w-4xl mx-auto";
   container.innerHTML = `
     <div class="text-center mb-16 reveal">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Experience Timeline</h2>
-      <p class="text-slate-400 text-lg">My journey in data science and AI engineering</p>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Trajetória Profissional</h2>
+      <p class="text-slate-400 text-lg">Minha jornada no desenvolvimento web e design de interfaces</p>
       <div class="h-1 w-20 bg-green-500 mx-auto rounded-full mt-4"></div>
     </div>
     
@@ -512,14 +512,14 @@ function renderProjects(data) {
   container.className = "py-20 px-6 max-w-6xl mx-auto";
   container.innerHTML = `
     <div class="text-center mb-10 reveal">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Featured Projects</h2>
-      <p class="text-slate-400 text-lg max-w-2xl mx-auto">Interactive gallery showcasing full-stack systems and design architectures</p>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Projetos em Destaque</h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">Galeria interativa apresentando sistemas full-stack e design de interfaces</p>
       <div class="h-1 w-20 bg-purple-500 mx-auto rounded-full mt-4"></div>
     </div>
 
     <!-- Project Filters -->
     <div class="flex justify-center space-x-3 mb-10 reveal">
-      <button data-filter="all" class="filter-btn px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-accent/40 bg-slate-900/50 hover:bg-slate-800 text-white transition-all ring-1 ring-accent/15">All</button>
+      <button data-filter="all" class="filter-btn px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-accent/40 bg-slate-900/50 hover:bg-slate-800 text-white transition-all ring-1 ring-accent/15">Todos</button>
       <button data-filter="Full Stack" class="filter-btn px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-slate-800 bg-slate-900/50 hover:border-slate-700 text-slate-400 hover:text-white transition-all">Full Stack</button>
       <button data-filter="Frontend/Design" class="filter-btn px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-slate-800 bg-slate-900/50 hover:border-slate-700 text-slate-400 hover:text-white transition-all">Frontend/Design</button>
     </div>
@@ -591,7 +591,7 @@ function renderProjects(data) {
     // Case Study Link button
     const caseStudyBtn = document.createElement("button");
     caseStudyBtn.className = "mb-4 text-xs font-semibold text-accent hover:text-accent-light flex items-center space-x-1 transition-all duration-300 relative z-10 self-start hover:translate-x-1 outline-none";
-    caseStudyBtn.innerHTML = `<span>Read Case Study</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1"></i>`;
+    caseStudyBtn.innerHTML = `<span>Ver Estudo de Caso</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-1"></i>`;
     caseStudyBtn.addEventListener("click", (e) => {
       e.preventDefault();
       openCaseStudy(proj);
@@ -655,8 +655,8 @@ function renderContact(data) {
   container.className = "py-20 px-6 max-w-6xl mx-auto";
   container.innerHTML = `
     <div class="text-center mb-16 reveal">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">Let's Connect</h2>
-      <p class="text-slate-400 text-lg max-w-xl mx-auto">Ready to collaborate on the next big AI innovation? Let's build something amazing together.</p>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">Vamos Conversar?</h2>
+      <p class="text-slate-400 text-lg max-w-xl mx-auto">Pronto para colaborar no seu próximo projeto digital? Vamos construir algo extraordinário juntos.</p>
       <div class="h-1 w-20 bg-blue-500 mx-auto rounded-full mt-4"></div>
     </div>
     
@@ -667,24 +667,24 @@ function renderContact(data) {
           <div class="border-b border-slate-800 pb-4 mb-6">
             <h4 class="text-white font-bold flex items-center space-x-2 text-lg">
               <i data-lucide="message-square" class="text-blue-400 w-5 h-5"></i>
-              <span>Send a Message</span>
+              <span>Enviar uma Mensagem</span>
             </h4>
           </div>
           
           <form id="contact-form" class="space-y-6">
             <div>
-              <input type="text" id="form-name" placeholder="Your Name" class="w-full bg-slate-800/40 border border-slate-700/80 rounded-lg px-4 py-3 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" required>
+              <input type="text" id="form-name" placeholder="Seu Nome" class="w-full bg-slate-800/40 border border-slate-700/80 rounded-lg px-4 py-3 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" required>
             </div>
             <div>
-              <input type="email" id="form-email" placeholder="Your Email" class="w-full bg-slate-800/40 border border-slate-700/80 rounded-lg px-4 py-3 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" required>
+              <input type="email" id="form-email" placeholder="Seu E-mail" class="w-full bg-slate-800/40 border border-slate-700/80 rounded-lg px-4 py-3 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" required>
             </div>
             <div>
-              <textarea id="form-message" placeholder="Your Message" rows="5" class="w-full bg-slate-800/40 border border-slate-700/80 rounded-lg px-4 py-3 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all resize-none" required></textarea>
+              <textarea id="form-message" placeholder="Sua Mensagem" rows="5" class="w-full bg-slate-800/40 border border-slate-700/80 rounded-lg px-4 py-3 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all resize-none" required></textarea>
             </div>
             
             <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold py-3 rounded-lg flex items-center justify-center space-x-2 transition-all glow-on-hover shadow-lg">
               <i data-lucide="send" class="w-4 h-4"></i>
-              <span>Launch Message</span>
+              <span>Enviar Mensagem</span>
             </button>
           </form>
         </div>
@@ -700,11 +700,11 @@ function renderContact(data) {
             <!-- Dashed outline rotating border -->
             <div class="absolute inset-0 border border-dashed border-purple-400/20 rounded-full animate-[spin_20s_linear_infinite]"></div>
           </div>
-          <p class="text-blue-300 italic text-base">"Ready to process your ideas into reality!"</p>
+          <p class="text-blue-300 italic text-base">"Pronto para transformar suas ideias em realidade!"</p>
         </div>
         
         <div class="space-y-4">
-          <h3 class="text-xl font-bold text-white text-center mb-6">Connect With Me</h3>
+          <h3 class="text-xl font-bold text-white text-center mb-6">Conecte-se Comigo</h3>
           
           <div class="space-y-3" id="social-links-list"></div>
         </div>
@@ -713,7 +713,7 @@ function renderContact(data) {
     
     <!-- Footer -->
     <div class="text-center mt-20 pt-8 border-t border-slate-800/50 reveal">
-      <p class="text-slate-500 text-sm">&copy; 2026 ${data.personal.name}. Engineering the future with AI.</p>
+      <p class="text-slate-500 text-sm">&copy; 2026 ${data.personal.name}. Construindo o futuro com tecnologia.</p>
     </div>
   `;
 
@@ -722,8 +722,8 @@ function renderContact(data) {
   const items = [
     { icon: "mail", label: data.contact.email, href: `mailto:${data.contact.email}`, color: "from-red-400 to-pink-400" },
     { icon: "phone", label: data.contact.phone, href: `tel:${data.contact.phone}`, color: "from-green-400 to-blue-400" },
-    { icon: "github", label: "GitHub Profile", href: data.contact.github, color: "from-gray-600 to-gray-800" },
-    { icon: "linkedin", label: "LinkedIn Profile", href: data.contact.linkedin, color: "from-blue-400 to-blue-600" }
+    { icon: "github", label: "Perfil no GitHub", href: data.contact.github, color: "from-gray-600 to-gray-800" },
+    { icon: "linkedin", label: "Perfil no LinkedIn", href: data.contact.linkedin, color: "from-blue-400 to-blue-600" }
   ];
 
   items.forEach(link => {
@@ -758,7 +758,7 @@ function renderContact(data) {
     const originalText = btn.innerHTML;
     
     btn.disabled = true;
-    btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i><span>Transmission Complete!</span>`;
+    btn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i><span>Transmissão Concluída!</span>`;
     lucide.createIcons();
     
     setTimeout(() => {
@@ -1010,24 +1010,26 @@ function initTerminalConsole() {
   });
 
   const commands = {
-    help: () => {
-      return `Available Commands:<br>
-  - <span class="text-purple-400 font-bold">about</span>    : Learn more about Wesley Costa<br>
-  - <span class="text-purple-400 font-bold">skills</span>   : Print core technologies and proficiencies<br>
-  - <span class="text-purple-400 font-bold">projects</span> : View high-fidelity projects and links<br>
-  - <span class="text-purple-400 font-bold">contact</span>  : Display email, github and socials<br>
-  - <span class="text-purple-400 font-bold">clear</span>    : Clear terminal screen output<br>
-  - <span class="text-purple-400 font-bold">exit</span>     : Close the terminal console`;
+    ajuda: () => {
+      return `Comandos Disponíveis:<br>
+  - <span class="text-purple-400 font-bold">sobre</span>       : Saiba mais sobre Wesley Costa<br>
+  - <span class="text-purple-400 font-bold">habilidades</span> : Exibe as principais tecnologias e competências<br>
+  - <span class="text-purple-400 font-bold">projetos</span>    : Veja os projetos em destaque e links<br>
+  - <span class="text-purple-400 font-bold">contato</span>     : Mostra e-mail, GitHub e redes sociais<br>
+  - <span class="text-purple-400 font-bold">limpar</span>      : Limpa a tela do terminal<br>
+  - <span class="text-purple-400 font-bold">sair</span>        : Fecha o console do terminal`;
     },
-    about: () => {
+    help: () => commands.ajuda(),
+    sobre: () => {
       const data = window.PORTFOLIO_DATA;
       return `<span class="text-white font-bold">${data.personal.name}</span> - ${data.personal.role}<br>
 ${data.personal.shortIntro}<br>
-"${data.personal.quote}"`;
+${data.personal.quote}`;
     },
-    skills: () => {
+    about: () => commands.sobre(),
+    habilidades: () => {
       const data = window.PORTFOLIO_DATA;
-      let html = "Wesley Costa's Tech Stack & Expertise:<br>";
+      let html = "Tecnologias & Especialidades de Wesley Costa:<br>";
       data.skills.forEach(cat => {
         html += `<span class="text-white font-bold">${cat.category}</span>:<br>`;
         cat.skills.forEach(s => {
@@ -1036,26 +1038,29 @@ ${data.personal.shortIntro}<br>
       });
       return html;
     },
-    projects: () => {
+    skills: () => commands.habilidades(),
+    projetos: () => {
       const data = window.PORTFOLIO_DATA;
-      let html = "Core Projects Portfolio:<br>";
+      let html = "Portfólio de Projetos Principais:<br>";
       data.projects.forEach(p => {
         html += `- <span class="text-white font-bold">${p.title}</span> [${p.category}]<br>
   ${p.description}<br>
-  Tech Stack: ${p.tech.join(", ")}<br>
+  Tecnologias: ${p.tech.join(", ")}<br>
   GitHub: <a href="${p.githubLink}" target="_blank" class="underline text-blue-400">${p.githubLink}</a><br><br>`;
       });
       return html;
     },
-    contact: () => {
+    projects: () => commands.projetos(),
+    contato: () => {
       const data = window.PORTFOLIO_DATA;
-      return `Reach out to Wesley Costa:<br>
-  - Email: <a href="mailto:${data.contact.email}" class="text-blue-400 underline">${data.contact.email}</a><br>
+      return `Entre em contato com Wesley Costa:<br>
+  - E-mail: <a href="mailto:${data.contact.email}" class="text-blue-400 underline">${data.contact.email}</a><br>
   - GitHub: <a href="${data.contact.github}" target="_blank" class="text-blue-400 underline">${data.contact.github}</a><br>
   - LinkedIn: <a href="${data.contact.linkedin}" target="_blank" class="text-blue-400 underline">${data.contact.linkedin}</a>`;
     },
+    contact: () => commands.contato(),
     sudo: () => {
-      return `<span class="text-red-400">sudo: Permission denied. Wesley Costa is the root administrator. Nice try! 🧑‍💻</span>`;
+      return `<span class="text-red-400">sudo: Permissão negada. Wesley Costa é o administrador root. Boa tentativa! 🧑‍💻</span>`;
     }
   };
 
@@ -1072,12 +1077,12 @@ ${data.personal.shortIntro}<br>
 
       if (cmd === "") return;
 
-      if (cmd === "clear") {
+      if (cmd === "clear" || cmd === "limpar") {
         output.innerHTML = "";
         return;
       }
 
-      if (cmd === "exit" || cmd === "close") {
+      if (cmd === "exit" || cmd === "close" || cmd === "sair" || cmd === "fechar") {
         closeTerminal();
         return;
       }
@@ -1086,7 +1091,7 @@ ${data.personal.shortIntro}<br>
       if (commands[cmd]) {
         response.innerHTML = commands[cmd]();
       } else {
-        response.innerHTML = `shell: command not found: <span class="text-red-400">${fullCmd}</span>. Type <span class="text-purple-400">help</span> for assistance.`;
+        response.innerHTML = `shell: comando não encontrado: <span class="text-red-400">${fullCmd}</span>. Digite <span class="text-purple-400">ajuda</span> para obter suporte.`;
       }
       output.appendChild(response);
       
@@ -1133,9 +1138,9 @@ function openCaseStudy(proj) {
   if (!modal || !title || !problem || !solution || !impact || !tech || !github || !demo) return;
 
   title.textContent = proj.title;
-  problem.textContent = proj.caseStudy ? proj.caseStudy.problem : "Challenge description coming soon.";
-  solution.textContent = proj.caseStudy ? proj.caseStudy.solution : "Solution breakdown coming soon.";
-  impact.textContent = proj.caseStudy ? proj.caseStudy.impact : "Impact results coming soon.";
+  problem.textContent = proj.caseStudy ? proj.caseStudy.problem : "Descrição do desafio disponível em breve.";
+  solution.textContent = proj.caseStudy ? proj.caseStudy.solution : "Detalhamento da solução disponível em breve.";
+  impact.textContent = proj.caseStudy ? proj.caseStudy.impact : "Resultados de impacto disponíveis em breve.";
 
   tech.innerHTML = "";
   proj.tech.forEach(t => {
