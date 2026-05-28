@@ -584,9 +584,14 @@ function renderProjects(data) {
 
     // Title
     const h3 = document.createElement("h3");
-    h3.className = "text-xl font-bold text-white group-hover:text-accent-light transition-colors duration-300 mb-2 relative z-10 cursor-pointer";
-    h3.textContent = proj.title;
-    h3.addEventListener("click", () => openCaseStudy(proj));
+    h3.className = "text-xl font-bold text-white group-hover:text-accent-light transition-colors duration-300 mb-2 relative z-10";
+    
+    const titleLink = document.createElement("a");
+    titleLink.href = proj.demoLink;
+    titleLink.target = "_blank";
+    titleLink.textContent = proj.title;
+    titleLink.className = "hover:underline";
+    h3.appendChild(titleLink);
     card.appendChild(h3);
 
     // Description
