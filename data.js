@@ -4,7 +4,7 @@
 window.PORTFOLIO_DATA = {
   personal: {
     name: "WESLEY COSTA",
-    profileImg: "assets/profile.png",
+    profileImg: "assets/profile.jpg",
     role: "Desenvolvedor Full Stack & Arquiteto UI/UX",
     tagline: "React • Node.js • Supabase • Custom CSS & OKLCH Styles • Código Limpo",
     welcomeText: "Olá, eu sou Wesley Costa",
