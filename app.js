@@ -45,7 +45,7 @@ function renderHero(data) {
   nameDiv.className = "mb-8";
   
   const h1 = document.createElement("h1");
-  h1.className = "text-5xl md:text-8xl font-black mb-4 tracking-tight";
+  h1.className = "text-4xl sm:text-5xl md:text-8xl font-black mb-4 tracking-tight whitespace-nowrap";
   
   const name = data.personal.name;
   name.split("").forEach((char, index) => {
