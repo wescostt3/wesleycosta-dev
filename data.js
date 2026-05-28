@@ -93,46 +93,46 @@ window.PORTFOLIO_DATA = {
     {
       title: "CenterShip Financeiro",
       category: "Full Stack",
-      description: "Plataforma web financeira estática premium integrada ao Supabase, KPIs executivos, gráficos interativos personalizados e propostas comerciais prontas para impressão.",
-      icon: "wallet",
-      tech: ["HTML5", "CSS3", "Vanilla JS", "Supabase", "PostgreSQL"],
+      description: "Dashboard financeiro completo com conciliação, KPIs em tempo real, geração de propostas em papel timbrado, comprovantes e gráficos integrados ao Supabase.",
+      logoImg: "assets/centership-logo.svg",
+      tech: ["HTML5", "CSS3 (OKLCH)", "Vanilla JS", "Supabase", "PostgreSQL"],
       gradient: "from-blue-500 to-indigo-600",
-      demoLink: "https://portfolio-ai-engineer-eight.vercel.app/",
+      demoLink: "https://centership-financeiro.vercel.app/",
       githubLink: "https://github.com/wescostt3/centership-financeiro",
       caseStudy: {
-        problem: "As planilhas de rastreamento financeiro eram complexas, não colaborativas e difíceis de acessar em trânsito. O cliente precisava de uma ferramenta leve e segura para faturamento rápido, relatórios em PDF e logs de cobrança MEI.",
-        solution: "Desenvolvi uma aplicação web estática de alto desempenho que utiliza integração Supabase leve com fallbacks para localStorage nos modos de demonstração offline. Projetei um sistema CSS baseado em oklch para temas claro/escuro premium.",
-        impact: "Reduzi o tempo de geração de propostas em 75% e ativei a validação de faturamento em tempo real para prestadores de serviços MEI terceirizados."
+        problem: "Gestão financeira integrada corporativa necessitava de conciliação semanal rápida, controle de propostas comerciais de serviços e relatórios de fluxo de caixa em PDF.",
+        solution: "Desenvolvimento de um dashboard financeiro de alto desempenho integrado ao Supabase, apresentando fluxos de caixa, painéis de auditoria, faturamentos semanais e gerador de propostas otimizadas para impressão.",
+        impact: "Aumento de 85% na velocidade de faturamento empresarial e auditoria de contas a pagar e receber em tempo real."
       }
     },
     {
-      title: "RM Sobras Reciclagem",
-      category: "Full Stack",
-      description: "Sistema de gerenciamento operacional para rastreamento de sucatas de reciclagem industrial, incluindo fórmulas de precificação personalizadas e dashboards analíticos reativos.",
-      icon: "recycle",
-      tech: ["HTML5", "Tailwind CSS", "JavaScript", "Node.js"],
-      gradient: "from-emerald-400 to-teal-600",
-      demoLink: "https://github.com/wescostt3/riosul",
-      githubLink: "https://github.com/wescostt3/riosul",
-      caseStudy: {
-        problem: "Os pátios de reciclagem industrial perdiam a precisão do valor de estoque e preços de sucata devido à oscilação das cotações de metais e rastreamento em papel.",
-        solution: "Construí uma plataforma reativa de gestão que calcula margens em tempo real e rastreia os materiais desde a entrada até o envio, visualizando tudo em um painel responsivo.",
-        impact: "Aumentei a precisão do inventário em 98% e reduzi em 40% os erros operacionais de classificação de materiais."
-      }
-    },
-    {
-      title: "CenterShip Next.js Rebuild",
+      title: "Sushique Protótipo",
       category: "Frontend/Design",
-      description: "Reconstrução moderna do portal operacional da CenterShip usando React, Next.js, TypeScript e ganchos de ciclo de vida modernos.",
-      icon: "layers",
-      tech: ["Next.js", "TypeScript", "React", "Tailwind CSS"],
-      gradient: "from-purple-500 to-pink-600",
-      demoLink: "https://github.com/wescostt3/centership-nextjs",
-      githubLink: "https://github.com/wescostt3/centership-nextjs",
+      description: "Experiência digital premium para culinária japonesa artesanal. Site institucional fluido com interface mobile de pedidos e atalhos de widgets reativos.",
+      logoImg: "assets/sushique-logo.svg",
+      tech: ["HTML5", "CSS3", "JavaScript", "Design Responsivo", "Mobile Views"],
+      gradient: "from-red-500 to-amber-600",
+      demoLink: "https://sushique-prototipo.vercel.app",
+      githubLink: "https://github.com/wescostt3/sushique-prototipo",
       caseStudy: {
-        problem: "A versão estática precisava de escalabilidade, otimização de SEO para propostas voltadas para clientes e renderização estática estruturada.",
-        solution: "Engenharia de componentes em React/TypeScript usando o Next.js App Router, criando widgets de entrada e painéis altamente modulares e reutilizáveis.",
-        impact: "Alcançou pontuação Lighthouse de 100/100 em Desempenho e estabeleceu uma biblioteca de componentes robusta para rápida prototipagem de novos recursos SaaS."
+        problem: "Restaurantes premium exigem presença online sofisticada que transmita a qualidade física da culinária japonesa e facilite pedidos rápidos e reservas de mesas.",
+        solution: "Criação de um portal responsivo elegante com identidade visual baseada em tons de bege e bordô, acoplado a um protótipo de aplicativo nativo Android e widgets.",
+        impact: "Navegação fluida e imersiva com taxas de conversão de reservas aprimoradas através de design UI/UX executivo focado no usuário."
+      }
+    },
+    {
+      title: "De Ponto a Ponto",
+      category: "Full Stack",
+      description: "Sistema de gestão de jornada corporativa e ponto facial REP-P homologado pela portaria 671 do MTE, com auditorias automatizadas de folha de pagamento.",
+      logoImg: "assets/deponto-logo.png",
+      tech: ["React", "TypeScript", "Tailwind CSS", "REST API", "Supabase"],
+      gradient: "from-purple-500 to-pink-600",
+      demoLink: "https://de-ponto-a-ponto-ltda.vercel.app/",
+      githubLink: "https://github.com/wescostt3/de-ponto-a-ponto-ltda",
+      caseStudy: {
+        problem: "Empresas enfrentam altos riscos legais e inconsistências de ponto nas folhas mensais de funcionários por falta de auditorias automatizadas e hardware seguro.",
+        solution: "Construção de uma aplicação reativa integrada a hardware REP-P de reconhecimento facial e rotinas automáticas de validação e conciliação de marcações de folha.",
+        impact: "Garantia de conformidade jurídica com a portaria 671 MTE e redução expressiva de 90% em inconsistências na folha mensal do departamento pessoal."
       }
     }
   ],

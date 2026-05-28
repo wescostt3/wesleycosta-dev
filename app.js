@@ -547,11 +547,18 @@ function renderProjects(data) {
     topRow.className = "flex items-center justify-between mb-4 relative z-10";
 
     const iconDiv = document.createElement("div");
-    iconDiv.className = `p-3 rounded-full bg-gradient-to-r ${proj.gradient} bg-opacity-20 hover:rotate-[360deg] transition-transform duration-700`;
-    const icon = document.createElement("i");
-    icon.setAttribute("data-lucide", proj.icon);
-    icon.className = "w-6 h-6 text-white";
-    iconDiv.appendChild(icon);
+    iconDiv.className = `p-2 rounded-full bg-gradient-to-r ${proj.gradient} bg-opacity-20 flex items-center justify-center w-12 h-12 hover:rotate-[360deg] transition-transform duration-700`;
+    if (proj.logoImg) {
+      const img = document.createElement("img");
+      img.src = proj.logoImg;
+      img.className = "w-8 h-8 object-contain rounded-full bg-white/90 p-0.5";
+      iconDiv.appendChild(img);
+    } else {
+      const icon = document.createElement("i");
+      icon.setAttribute("data-lucide", proj.icon || "folder");
+      icon.className = "w-6 h-6 text-white";
+      iconDiv.appendChild(icon);
+    }
     topRow.appendChild(iconDiv);
 
     // Links buttons
